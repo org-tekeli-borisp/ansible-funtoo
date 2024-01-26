@@ -1,5 +1,5 @@
 ---
-- hosts: lxd_host
+- hosts: lxd
   gather_facts: true
   roles:
     - lxd

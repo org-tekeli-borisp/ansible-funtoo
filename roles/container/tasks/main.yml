@@ -1,0 +1,14 @@
+---
+- name: launch {{ container_name }}
+  shell: /usr/bin/lxc launch {{ image_alias }} {{ container_name }} --profile default --profile macvlan
+  register: out
+- debug: var=out.stdout_lines
+
+- name: set {{ container_name }} network
+  shell: |
+    /usr/bin/lxc exec {{ container_name }} -- sh -c 'echo "template=dhcpcd" > /etc/conf.d/netif.eth0'
+    /usr/bin/lxc exec {{ container_name }} -- sh -c 'ln -s /etc/init.d/netif.tmpl /etc/init.d/netif.eth0'
+    /usr/bin/lxc exec {{ container_name }} -- sh -c 'rc-update add netif.eth0 default'
+    /usr/bin/lxc exec {{ container_name }} -- sh -c 'rc'
+  register: out
+- debug: var=out.stdout_lines

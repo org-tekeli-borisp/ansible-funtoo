@@ -1,2 +1,5 @@
-[lxd_host]
+[lxd]
 funtoo-lxd
+
+[metro]
+funtoo-metro

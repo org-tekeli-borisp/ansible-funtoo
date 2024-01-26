@@ -1,35 +1,9 @@
 ---
-- name: launch {{ container_name }}
-  shell: /usr/bin/lxc launch {{ image_alias }} {{ container_name }} --profile default --profile macvlan
-  register: out
-- debug: var=out.stdout_lines
+- name: launch
+  include_tasks: launch.yml
 
-- name: set {{ container_name }} network - ensure dhcpcd for netif.eth0 enabled
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/bin/echo "template=dhcpcd" > /etc/conf.d/netif.eth0'
-  register: out
-- debug: var=out.stdout_lines
+- name: network
+  include_tasks: network.yml
 
-- name: set {{ container_name }} network - create netif.eth0 link from netif.tmpl
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/bin/ln -s /etc/init.d/netif.tmpl /etc/init.d/netif.eth0'
-  register: out
-- debug: var=out.stdout_lines
-
-- name: set {{ container_name }} network - ensure netif.eth0 in default runlevel enabled
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/sbin/rc-update add netif.eth0 default'
-  register: out
-- debug: var=out.stdout_lines
-
-- name: set {{ container_name }} network - ensure openrc started
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/sbin/openrc'
-  register: out
-- debug: var=out.stdout_lines
-
-- name: set {{ container_name }} network - workaround for sporadically missing ip address
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/etc/init.d/netif.eth0 restart'
-  register: out
-- debug: var=out.stdout_lines
+- name: ssh
+  include_tasks: ssh.yml

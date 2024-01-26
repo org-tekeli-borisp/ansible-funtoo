@@ -1,0 +1,5 @@
+---
+- name: launch {{ container_name }}
+  shell: /usr/bin/lxc launch {{ image_alias }} {{ container_name }} --profile default --profile macvlan
+  register: out
+- debug: var=out.stdout_lines

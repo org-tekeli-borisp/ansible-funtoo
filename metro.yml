@@ -4,3 +4,4 @@
     - group_vars/metro.yml
   roles:
     - container
+    - metro

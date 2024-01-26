@@ -4,11 +4,32 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: set {{ container_name }} network
+- name: set {{ container_name }} network - ensure dhcpcd for netif.eth0 enabled
   shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c 'echo "template=dhcpcd" > /etc/conf.d/netif.eth0'
-    /usr/bin/lxc exec {{ container_name }} -- sh -c 'ln -s /etc/init.d/netif.tmpl /etc/init.d/netif.eth0'
-    /usr/bin/lxc exec {{ container_name }} -- sh -c 'rc-update add netif.eth0 default'
-    /usr/bin/lxc exec {{ container_name }} -- sh -c 'rc'
+    /usr/bin/lxc exec {{ container_name }} -- sh -c '/bin/echo "template=dhcpcd" > /etc/conf.d/netif.eth0'
+  register: out
+- debug: var=out.stdout_lines
+
+- name: set {{ container_name }} network - create netif.eth0 link from netif.tmpl
+  shell: |
+    /usr/bin/lxc exec {{ container_name }} -- sh -c '/bin/ln -s /etc/init.d/netif.tmpl /etc/init.d/netif.eth0'
+  register: out
+- debug: var=out.stdout_lines
+
+- name: set {{ container_name }} network - ensure netif.eth0 in default runlevel enabled
+  shell: |
+    /usr/bin/lxc exec {{ container_name }} -- sh -c '/sbin/rc-update add netif.eth0 default'
+  register: out
+- debug: var=out.stdout_lines
+
+- name: set {{ container_name }} network - ensure openrc started
+  shell: |
+    /usr/bin/lxc exec {{ container_name }} -- sh -c '/sbin/openrc'
+  register: out
+- debug: var=out.stdout_lines
+
+- name: set {{ container_name }} network - workaround for sporadically missing ip address
+  shell: |
+    /usr/bin/lxc exec {{ container_name }} -- sh -c '/etc/init.d/netif.eth0 restart'
   register: out
 - debug: var=out.stdout_lines

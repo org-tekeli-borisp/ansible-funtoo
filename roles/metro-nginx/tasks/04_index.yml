@@ -1,0 +1,8 @@
+---
+- name: create metro index site
+  copy:
+    src: index.html
+    dest: /home/mirror/funtoo/index.html
+    owner: root
+    group: root
+    mode: 0644

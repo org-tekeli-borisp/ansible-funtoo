@@ -1,0 +1,5 @@
+---
+- name: ensure nginx is installed
+  portage:
+    package: www-servers/nginx
+    state: present

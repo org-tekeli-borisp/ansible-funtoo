@@ -1,0 +1,12 @@
+server {
+    server_name metro.fritz.box;
+    access_log /var/log/nginx/metro.fritz.box.access.log combined;
+    listen 443 ssl;
+    ssl_certificate /etc/ssl/certs/server.crt;
+    ssl_certificate_key /etc/ssl/private/server.key;
+
+    location / {
+        root /home/mirror/funtoo/;
+        autoindex on;
+    }
+}

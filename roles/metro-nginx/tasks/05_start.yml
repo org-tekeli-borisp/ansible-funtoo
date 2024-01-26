@@ -1,0 +1,38 @@
+---
+- name: ensure nginx is installed
+  portage:
+    package: www-servers/nginx
+    state: present
+
+- name: create self signed cert
+  command: >
+    openssl req -x509 -nodes -subj '/CN={{ ansible_host }}' -days 365 -newkey rsa:4096 -sha256 -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt
+    creates=/etc/ssl/certs/server.crt
+
+- name: create nginx metro site config
+  copy:
+    src: metro-site-config
+    dest: /etc/nginx/sites-available/metro-site-config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: enable nginx metro site config
+  file:
+    src: /etc/nginx/sites-available/metro-site-config
+    dest: /etc/nginx/sites-enabled/metro-site-config
+    state: link
+
+- name: create metro index site
+  copy:
+    src: index.html
+    dest: /home/mirror/funtoo/index.html
+    owner: root
+    group: root
+    mode: 0644
+
+- name: ensure nginx is started und enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes

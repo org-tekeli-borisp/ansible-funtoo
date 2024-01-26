@@ -1,0 +1,5 @@
+---
+- hosts: lxd_host
+  gather_facts: true
+  roles:
+    - lxd

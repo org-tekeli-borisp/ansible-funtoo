@@ -1,0 +1,100 @@
+---
+- name: ensure app-emulation/lxd is installed
+  portage:
+    package: app-emulation/lxd
+    state: present
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure dev-python/python3-lxc is installed
+  portage:
+    package: dev-python/python3-lxc
+    state: present
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure security limits
+  copy:
+    src: security-limits.conf
+    dest: /etc/security/limits.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure subuid
+  copy:
+    src: subuid
+    dest: /etc/subuid
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure subgid
+  copy:
+    src: subgid
+    dest: /etc/subgid
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure lxd is started und enabled
+  service:
+    name: lxd
+    state: started
+    enabled: yes
+  register: out
+- debug: var=out.stdout_lines
+
+- name: Pause for 5 seconds
+  pause:
+    seconds: 5
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure lxd seed is available
+  copy:
+    src: lxd.seed
+    dest: /tmp/lxd.seed
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: lxd pressed init
+  shell: /usr/sbin/lxd init --preseed < /tmp/lxd.seed
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure macvlan profile exists
+  lxd_profile:
+    name: macvlan
+    state: present
+    config: { }
+    description: ""
+    devices:
+      eth0:
+        nictype: macvlan
+        parent: eth0
+        type: nic
+  register: out
+- debug: var=out.stdout_lines
+
+- name: download lxd image
+  get_url:
+    url: "{{ lxd_image_url }}"
+    dest: /tmp/lxd.img
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: import lxd image
+  shell: /usr/bin/lxc image import /tmp/lxd.img --alias {{ image_alias }}
+  register: out
+- debug: var=out.stdout_lines

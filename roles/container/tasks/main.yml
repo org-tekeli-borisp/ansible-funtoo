@@ -1,9 +1,9 @@
 ---
-- name: launch
-  include_tasks: launch.yml
+- name: launch container
+  include_tasks: 01_launch.yml
 
-- name: network
-  include_tasks: network.yml
+- name: configure container network
+  include_tasks: 02_network.yml
 
-- name: ssh
-  include_tasks: ssh.yml
+- name: install ssh authorized_keys
+  include_tasks: 03_ssh.yml

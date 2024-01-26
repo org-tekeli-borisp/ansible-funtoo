@@ -1,0 +1,30 @@
+---
+- name: ensure security limits
+  copy:
+    src: security-limits.conf
+    dest: /etc/security/limits.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure subuid
+  copy:
+    src: subuid
+    dest: /etc/subuid
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: ensure subgid
+  copy:
+    src: subgid
+    dest: /etc/subgid
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines

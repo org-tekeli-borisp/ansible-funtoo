@@ -1,0 +1,14 @@
+---
+- name: ensure lxd is started und enabled
+  service:
+    name: lxd
+    state: started
+    enabled: yes
+  register: out
+- debug: var=out.stdout_lines
+
+- name: Pause for 5 seconds
+  pause:
+    seconds: 5
+  register: out
+- debug: var=out.stdout_lines

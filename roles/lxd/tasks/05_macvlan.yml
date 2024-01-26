@@ -1,0 +1,14 @@
+---
+- name: ensure macvlan profile exists
+  lxd_profile:
+    name: macvlan
+    state: present
+    config: { }
+    description: ""
+    devices:
+      eth0:
+        nictype: macvlan
+        parent: eth0
+        type: nic
+  register: out
+- debug: var=out.stdout_lines

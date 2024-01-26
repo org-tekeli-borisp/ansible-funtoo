@@ -1,0 +1,15 @@
+---
+- name: ensure lxd seed is available
+  copy:
+    src: lxd.seed
+    dest: /tmp/lxd.seed
+    owner: root
+    group: root
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines
+
+- name: lxd pressed init
+  shell: /usr/sbin/lxd init --preseed < /tmp/lxd.seed
+  register: out
+- debug: var=out.stdout_lines

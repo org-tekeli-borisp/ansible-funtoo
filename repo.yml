@@ -1,0 +1,6 @@
+---
+- hosts: lxd
+  vars_files:
+    - group_vars/repo.yml
+  roles:
+    - container

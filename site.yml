@@ -2,3 +2,4 @@
 - import_playbook: lxd.yml
 - import_playbook: metro.yml
 - import_playbook: regen.yml
+- import_playbook: repo.yml

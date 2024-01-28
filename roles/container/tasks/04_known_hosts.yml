@@ -1,0 +1,28 @@
+---
+- name: get container network interface name
+  shell: lxc exec "{{ container_name }}" -- ip -4 -o link show | awk '{print $2}' | cut -f1 -d':' | cut -f1 -d'@' | grep '^e[tn]'
+  register: container_interface_name
+  changed_when: false
+- debug: var=container_interface_name.stdout
+
+- name: get container ip address
+  shell: lxc exec "{{ container_name }}" -- ip -o -4 addr show "{{ container_interface_name.stdout }}" | awk '{print $4}' | cut -d/ -f1
+  register: container_ip_address
+  changed_when: false
+- debug: var=container_ip_address.stdout
+
+- name: remove container name from known_hosts on ansible host
+  shell: ssh-keygen -R "{{ container_name }}" -f ~/.ssh/known_hosts
+  delegate_to: localhost
+
+- name: remove container ip from known_hosts on ansible host
+  shell: ssh-keygen -R "{{ container_ip_address.stdout }}" -f ~/.ssh/known_hosts
+  delegate_to: localhost
+
+- name: add container name to known_hosts on ansible host
+  shell: ssh-keyscan -4 "{{ container_name }}" >> ~/.ssh/known_hosts
+  delegate_to: localhost
+
+- name: add container ip address to known_hosts on ansible host
+  shell: ssh-keyscan -4 "{{ container_ip_address.stdout }}" >> ~/.ssh/known_hosts
+  delegate_to: localhost

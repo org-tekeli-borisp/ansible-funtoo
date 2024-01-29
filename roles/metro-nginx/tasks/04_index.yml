@@ -1,4 +1,13 @@
 ---
+- name: ensure  directory
+  file:
+    path: /home/mirror/funtoo
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
 - name: create metro index site
   copy:
     src: index.html

@@ -11,18 +11,11 @@
   changed_when: false
 - debug: var=container_ip_address.stdout
 
-- name: remove container name from known_hosts on ansible host
-  shell: ssh-keygen -R "{{ container_name }}" -f ~/.ssh/known_hosts
-  delegate_to: localhost
-
-- name: remove container ip from known_hosts on ansible host
-  shell: ssh-keygen -R "{{ container_ip_address.stdout }}" -f ~/.ssh/known_hosts
-  delegate_to: localhost
-
-- name: add container name to known_hosts on ansible host
-  shell: ssh-keyscan -4 "{{ container_name }}" >> ~/.ssh/known_hosts
-  delegate_to: localhost
-
 - name: add container ip address to known_hosts on ansible host
   shell: ssh-keyscan -4 "{{ container_ip_address.stdout }}" >> ~/.ssh/known_hosts
   delegate_to: localhost
+
+- set_fact:
+    "ansible_host": "{{ container_ip_address.stdout }}"
+  delegate_to: "{{ container_name }}"
+  delegate_facts: true

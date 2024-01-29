@@ -8,5 +8,6 @@
 - name: install ssh authorized_keys
   include_tasks: 03_ssh.yml
 
-- name: adapt know_hosts on ansible host
-  include_tasks: 04_known_hosts.yml
+- name: prepare connection
+  include_tasks: 04_connection.yml
+

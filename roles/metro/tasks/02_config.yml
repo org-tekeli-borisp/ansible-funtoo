@@ -1,11 +1,11 @@
 ---
-- name: metro git repo
+- name: metro - git repo
   shell: |
     /usr/bin/git clone https://code.funtoo.org/bitbucket/scm/core/metro.git /root/metro
   register: out
 - debug: var=out.stdout_lines
 
-- name: metro config
+- name: metro - config
   copy:
     src: /root/metro/metro.conf
     dest: /root/.metro

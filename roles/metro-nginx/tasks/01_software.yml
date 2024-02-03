@@ -1,5 +1,5 @@
 ---
-- name: ensure nginx is installed
+- name: metro-nginx - ensure nginx is installed
   portage:
     package: www-servers/nginx
     state: present

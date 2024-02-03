@@ -1,18 +1,18 @@
 ---
-- name: ego sync
+- name: metro - ego sync
   shell: |
     /usr/bin/ego sync
   register: out
 - debug: var=out.stdout_lines
 
-- name: ensure dev-python/lxml is installed
+- name: metro - ensure dev-python/lxml is installed
   portage:
     package: dev-python/lxml
     state: present
   register: out
 - debug: var=out.stdout_lines
 
-- name: ensure dev-python/requests is installed
+- name: metro - ensure dev-python/requests is installed
   portage:
     package: dev-python/requests
     state: present

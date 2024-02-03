@@ -1,5 +1,5 @@
 ---
-- name: ensure nginx is started und enabled
+- name: metro-nginx - ensure nginx is started und enabled
   service:
     name: nginx
     state: started

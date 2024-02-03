@@ -1,5 +1,5 @@
 ---
-- name: ensure  directory
+- name: metro-nginx - ensure  directory
   file:
     path: /home/mirror/funtoo
     state: directory
@@ -8,7 +8,7 @@
     mode: 0775
     recurse: yes
 
-- name: create metro index site
+- name: metro-nginx - create metro index site
   copy:
     src: index.html
     dest: /home/mirror/funtoo/index.html

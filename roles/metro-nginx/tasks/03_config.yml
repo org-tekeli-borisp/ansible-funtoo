@@ -1,5 +1,5 @@
 ---
-- name: create nginx metro site config
+- name: metro-nginx - create nginx metro site config
   copy:
     src: metro-site-config
     dest: /etc/nginx/sites-available/metro-site-config
@@ -7,7 +7,7 @@
     group: root
     mode: 0644
 
-- name: enable nginx metro site config
+- name: metro-nginx - enable nginx metro site config
   file:
     src: /etc/nginx/sites-available/metro-site-config
     dest: /etc/nginx/sites-enabled/metro-site-config

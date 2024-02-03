@@ -1,6 +1,6 @@
 ---
-- name: ensure needed software installed
+- name: metro - ensure needed software installed
   include_tasks: 01_software.yml
 
-- name: configure metro
+- name: metro - configure
   include_tasks: 02_config.yml

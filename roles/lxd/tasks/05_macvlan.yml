@@ -1,5 +1,5 @@
 ---
-- name: ensure macvlan profile exists
+- name: lxd - ensure macvlan profile exists
   lxd_profile:
     name: macvlan
     state: present

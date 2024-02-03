@@ -1,5 +1,5 @@
 ---
-- name: download lxd image
+- name: lxd - download lxd image
   get_url:
     url: "{{ lxd_image_url }}"
     dest: /tmp/lxd.img
@@ -7,7 +7,7 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: import lxd image
+- name: lxd - import lxd image
   shell: /usr/bin/lxc image import /tmp/lxd.img --alias {{ image_alias }}
   register: out
 - debug: var=out.stdout_lines

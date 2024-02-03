@@ -1,5 +1,5 @@
 ---
-- name: ensure security limits
+- name: lxd - ensure security limits
   copy:
     src: security-limits.conf
     dest: /etc/security/limits.conf
@@ -9,7 +9,7 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: ensure subuid
+- name: lxd - ensure subuid
   copy:
     src: subuid
     dest: /etc/subuid
@@ -19,7 +19,7 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: ensure subgid
+- name: lxd - ensure subgid
   copy:
     src: subgid
     dest: /etc/subgid

@@ -1,18 +1,18 @@
 ---
-- name: install needed software
+- name: lxd - install needed software
   include_tasks: 01_software.yml
 
-- name: install config files
+- name: lxd - install config files
   include_tasks: 02_config.yml
 
-- name: start lxd service
+- name: lxd - start lxd service
   include_tasks: 03_start.yml
 
-- name: init with seed
+- name: lxd - init with seed
   include_tasks: 04_seed.yml
 
-- name: create macvlan profile
+- name: lxd - create macvlan profile
   include_tasks: 05_macvlan.yml
 
-- name: import lxd image
+- name: lxd - import lxd image
   include_tasks: 06_image.yml

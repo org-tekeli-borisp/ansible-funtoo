@@ -1,5 +1,5 @@
 ---
-- name: ensure lxd seed is available
+- name: lxd - ensure lxd seed is available
   copy:
     src: lxd.seed
     dest: /tmp/lxd.seed
@@ -9,7 +9,7 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: lxd pressed init
+- name: lxd - lxd init with the seed
   shell: /usr/sbin/lxd init --preseed < /tmp/lxd.seed
   register: out
 - debug: var=out.stdout_lines

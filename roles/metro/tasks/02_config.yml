@@ -1,12 +1,14 @@
 ---
-- name: metro setup - clone metro
+- name: metro git repo
   shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/usr/bin/git clone https://code.funtoo.org/bitbucket/scm/core/metro.git /root/metro'
+    /usr/bin/git clone https://code.funtoo.org/bitbucket/scm/core/metro.git /root/metro
   register: out
 - debug: var=out.stdout_lines
 
-- name: metro setup - copy metro config
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c 'cp /root/metro/metro.conf /root/.metro'
+- name: metro config
+  copy:
+    src: /root/metro/metro.conf
+    dest: /root/.metro
+    remote_src: yes
   register: out
 - debug: var=out.stdout_lines

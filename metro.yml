@@ -4,4 +4,8 @@
     - group_vars/metro.yml
   roles:
     - container
+
+- hosts: metro
+  roles:
     - metro
+    - metro-nginx

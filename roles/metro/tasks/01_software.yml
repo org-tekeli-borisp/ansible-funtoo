@@ -1,18 +1,20 @@
 ---
-- name: metro setup - ego sync
+- name: ego sync
   shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/usr/bin/ego sync'
+    /usr/bin/ego sync
   register: out
 - debug: var=out.stdout_lines
 
-- name: metro setup - ensure dev-python/lxml is installed
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/usr/bin/emerge dev-python/lxml'
+- name: ensure dev-python/lxml is installed
+  portage:
+    package: dev-python/lxml
+    state: present
   register: out
 - debug: var=out.stdout_lines
 
-- name: metro setup - ensure dev-python/requests is installed
-  shell: |
-    /usr/bin/lxc exec {{ container_name }} -- sh -c '/usr/bin/emerge dev-python/requests'
+- name: ensure dev-python/requests is installed
+  portage:
+    package: dev-python/requests
+    state: present
   register: out
 - debug: var=out.stdout_lines

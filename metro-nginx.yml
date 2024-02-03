@@ -1,4 +1,0 @@
----
-- hosts: metro
-  roles:
-    - metro-nginx

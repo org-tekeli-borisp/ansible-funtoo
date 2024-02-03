@@ -4,3 +4,7 @@
     - group_vars/regen.yml
   roles:
     - container
+
+- hosts: regen
+  roles:
+    - regen

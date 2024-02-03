@@ -1,0 +1,35 @@
+---
+- name: regen - ego sync
+  shell: |
+    /usr/bin/ego sync
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen - ensure dev-python/jinja is installed
+  portage:
+    package: dev-python/jinja
+    state: present
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen - ensure dev-python/pyzmq  is installed
+  portage:
+    package: dev-python/pyzmq
+    state: present
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen - ensure ensure dev-python/pip  is installed
+  portage:
+    package: dev-python/pip
+    state: present
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen - ensure ensure ensure dev-python/lxml  is installed
+  portage:
+    package: dev-python/lxml
+    state: present
+  register: out
+- debug: var=out.stdout_lines
+

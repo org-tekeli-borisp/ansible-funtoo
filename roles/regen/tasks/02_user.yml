@@ -1,0 +1,9 @@
+---
+- name: regen - ensure user tree exists
+  user:
+    name: tree
+    groups: portage
+    append: yes
+  register: out
+- debug: var=out.stdout_lines
+

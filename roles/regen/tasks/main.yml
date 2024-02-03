@@ -1,0 +1,6 @@
+---
+- name: regen - ensure needed software installed
+  include_tasks: 01_software.yml
+
+- name: regen - configure tree user
+  include_tasks: 02_user.yml

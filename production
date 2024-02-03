@@ -3,3 +3,6 @@ funtoo-lxd
 
 [metro]
 metro-container
+
+[regen]
+regen-container

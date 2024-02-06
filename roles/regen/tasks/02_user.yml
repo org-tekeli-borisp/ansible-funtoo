@@ -1,9 +1,15 @@
 ---
 - name: regen - ensure user tree exists
   user:
-    name: tree
+    name: "{{ regen_user }}"
     groups: portage
     append: yes
   register: out
 - debug: var=out.stdout_lines
+
+- name: regen - ssh authorized keys
+  authorized_key:
+    user: "{{ regen_user }}"
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 

@@ -4,3 +4,6 @@
 
 - name: regen - configure tree user
   include_tasks: 02_user.yml
+
+- name: regen - configure regen
+  include_tasks: 03_config.yml

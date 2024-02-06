@@ -1,0 +1,18 @@
+---
+- name: regen - git repo
+  become: user
+  become_user: "{{ regen_user }}"
+  shell: |
+    /usr/bin/git clone https://code.funtoo.org/bitbucket/scm/core/merge-scripts.git
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen - config
+  copy:
+    src: merge
+    dest: "/home/{{ regen_user }}/.merge"
+    owner: "{{ regen_user }}"
+    group: "{{ regen_user }}"
+    mode: 0644
+  register: out
+- debug: var=out.stdout_lines

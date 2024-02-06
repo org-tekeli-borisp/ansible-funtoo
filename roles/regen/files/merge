@@ -1,0 +1,11 @@
+[sources]
+
+flora = https://code.funtoo.org/bitbucket/scm/co/flora.git
+kit-fixups = https://code.funtoo.org/bitbucket/scm/core/kit-fixups.git
+gentoo-staging = https://code.funtoo.org/bitbucket/scm/auto/gentoo-staging.git
+
+[branches]
+
+flora = master
+kit-fixups = master
+meta-repo = master

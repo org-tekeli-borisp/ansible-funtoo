@@ -23,6 +23,12 @@
   register: out
 - debug: var=out.stdout_lines
 
+- name: set {{ container_name }} network - ensure eth0 started
+  shell: |
+    /usr/bin/lxc exec {{ container_name }} -- sh -c '/etc/init.d/netif.eth0 start'
+  register: out
+- debug: var=out.stdout_lines
+
 - name: pause for 10 seconds to get ip from dhcpcd
   pause:
     seconds: 10

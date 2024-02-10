@@ -9,8 +9,8 @@
     recurse: yes
 
 - name: metro-nginx - create metro index site
-  copy:
-    src: index.html
+  template:
+    src: index.html.j2
     dest: /home/mirror/funtoo/index.html
     owner: root
     group: root

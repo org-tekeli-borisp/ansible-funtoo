@@ -1,7 +1,7 @@
 ---
 - name: metro-nginx - create nginx metro site config
-  copy:
-    src: metro-site-config
+  template:
+    src: metro-site-config.j2
     dest: /etc/nginx/sites-available/metro-site-config
     owner: root
     group: root

@@ -1,14 +1,4 @@
 ---
-- name: regen - git repo
-  become: true
-  become_user: "{{ regen_user }}"
-  become_method: su
-  become_flags: '--login'
-  shell: |
-    /usr/bin/git clone https://code.funtoo.org/bitbucket/scm/core/merge-scripts.git
-  register: out
-- debug: var=out.stdout_lines
-
 - name: regen - config
   copy:
     src: merge

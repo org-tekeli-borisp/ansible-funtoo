@@ -5,6 +5,14 @@
   register: out
 - debug: var=out.stdout_lines
 
+- name: regen - ensure sys-apps/metatools is installed
+  portage:
+    package: sys-apps/metatools
+    state: present
+    quiet: true
+  register: out
+- debug: var=out.stdout_lines
+
 - name: regen - ensure dev-python/jinja is installed
   portage:
     package: dev-python/jinja
@@ -13,25 +21,9 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: regen - ensure dev-python/pyzmq  is installed
-  portage:
-    package: dev-python/pyzmq
-    state: present
-    quiet: true
-  register: out
-- debug: var=out.stdout_lines
-
 - name: regen - ensure dev-python/pip  is installed
   portage:
     package: dev-python/pip
-    state: present
-    quiet: true
-  register: out
-- debug: var=out.stdout_lines
-
-- name: regen - ensure dev-python/lxml  is installed
-  portage:
-    package: dev-python/lxml
     state: present
     quiet: true
   register: out

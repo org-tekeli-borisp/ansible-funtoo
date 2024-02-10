@@ -20,3 +20,11 @@
     quiet: true
   register: out
 - debug: var=out.stdout_lines
+
+- name: metro - ensure sys-apps/fchroot is installed
+  portage:
+    package: sys-apps/fchroot
+    state: present
+    quiet: true
+  register: out
+- debug: var=out.stdout_lines

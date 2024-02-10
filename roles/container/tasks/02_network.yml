@@ -29,8 +29,8 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: pause for 10 seconds to get ip from dhcpcd
+- name: pause for 5 seconds to get ip from dhcpcd
   pause:
-    seconds: 10
+    seconds: 5
   register: out
 - debug: var=out.stdout_lines

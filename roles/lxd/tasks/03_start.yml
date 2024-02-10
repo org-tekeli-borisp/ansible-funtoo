@@ -7,8 +7,8 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: lxd - pause for 10 seconds
+- name: lxd - pause for 5 seconds
   pause:
-    seconds: 10
+    seconds: 5
   register: out
 - debug: var=out.stdout_lines

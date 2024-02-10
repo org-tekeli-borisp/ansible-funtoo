@@ -13,3 +13,26 @@
     state: present
     key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 
+- name: regen - git config user name
+  become: true
+  become_user: "{{ regen_user }}"
+  become_method: su
+  become_flags: '--login'
+  git_config:
+    name: user.name
+    scope: global
+    value: "{{ regen_user }}"
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen - git config user mail
+  become: true
+  become_user: "{{ regen_user }}"
+  become_method: su
+  become_flags: '--login'
+  git_config:
+    name: user.email
+    scope: global
+    value: "{{ regen_user }}@{{ container_name }}"
+  register: out
+- debug: var=out.stdout_lines

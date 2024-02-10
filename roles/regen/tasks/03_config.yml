@@ -1,10 +1,10 @@
 ---
-- name: regen - config
-  copy:
-    src: merge
-    dest: "/home/{{ regen_user }}/.merge"
+- name: regen - credentials for querying GitHub
+  template:
+    src: autogen.j2
+    dest: "/home/{{ regen_user }}/.autogen"
     owner: "{{ regen_user }}"
     group: "{{ regen_user }}"
-    mode: 0644
+    mode: 0600
   register: out
 - debug: var=out.stdout_lines

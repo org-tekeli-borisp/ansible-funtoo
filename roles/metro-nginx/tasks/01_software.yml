@@ -3,3 +3,4 @@
   portage:
     package: www-servers/nginx
     state: present
+    quiet: true

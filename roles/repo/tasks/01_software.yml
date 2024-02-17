@@ -1,0 +1,16 @@
+---
+- name: repo - ego sync
+  shell: |
+    /usr/bin/ego sync
+  register: out
+- debug: var=out.stdout_lines
+
+- name: repo - ensure www-apps/gitea is installed
+  portage:
+    package: www-apps/gitea
+    state: present
+    quiet: true
+  register: out
+- debug: var=out.stdout_lines
+
+

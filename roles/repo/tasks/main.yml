@@ -1,0 +1,3 @@
+---
+- name: repo - ensure needed software installed
+  include_tasks: 01_software.yml

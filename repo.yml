@@ -4,3 +4,7 @@
     - group_vars/repo.yml
   roles:
     - container
+
+- hosts: repo
+  roles:
+    - repo

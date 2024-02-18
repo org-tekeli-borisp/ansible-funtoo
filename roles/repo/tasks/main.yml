@@ -1,3 +1,15 @@
 ---
 - name: repo - ensure needed software installed
   include_tasks: 01_software.yml
+
+- name: repo - create self signed certificate
+  include_tasks: 02_certificate.yml
+
+- name: repo - ensure gitea config is created
+  include_tasks: 03_config.yml
+
+- name: repo - ensure gitea started
+  include_tasks: 04_start.yml
+
+- name: repo - ensure gitea repo user is created
+  include_tasks: 05_user.yml

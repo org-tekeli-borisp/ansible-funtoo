@@ -1,0 +1,15 @@
+---
+- name: repo - ensure gitea is started und enabled
+  service:
+    name: gitea
+    state: started
+    enabled: yes
+    use: openrc
+  register: out
+- debug: var=out.stdout_lines
+
+- name: repo - pause for 20 seconds
+  pause:
+    seconds: 20
+  register: out
+- debug: var=out.stdout_lines

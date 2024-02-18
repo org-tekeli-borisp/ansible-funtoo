@@ -1,0 +1,18 @@
+---
+- name: repo - create gitea repo user password
+  command: >
+    /usr/bin/openssl rand -base64 12
+  register: password
+- debug: var=password.stdout
+- set_fact:
+    gitea_repo_user_password={{ password.stdout }}
+
+- name: repo - ensure gitea funtoo user exists
+  become: true
+  become_user: "{{ gitea_user }}"
+  become_method: su
+  become_flags: '--login'
+  command: >
+    /usr/bin/gitea admin user create --username {{ gitea_repo_user }} --password {{ gitea_repo_user_password }} --email {{ gitea_repo_user_email }} --admin
+  register: out
+- debug: var=out.stdout_lines

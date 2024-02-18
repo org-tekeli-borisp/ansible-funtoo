@@ -1,0 +1,29 @@
+---
+- name: repo - create gitea internal token
+  command: >
+    /usr/bin/gitea generate secret INTERNAL_TOKEN
+  register: internal_token
+- set_fact:
+    gitea_internal_token={{ internal_token.stdout }}
+
+- name: repo - create gitea jwt secret
+  command: >
+    /usr/bin/gitea generate secret JWT_SECRET
+  register: jwt_secret
+- set_fact:
+    gitea_jwt_secret={{ jwt_secret.stdout }}
+
+- name: repo - create gitea lfs jwt secret
+  command: >
+    /usr/bin/gitea generate secret LFS_JWT_SECRET
+  register: lfs_jwt_secret
+- set_fact:
+    gitea_lfs_jwt_secret={{ lfs_jwt_secret.stdout }}
+
+- name: repo - create gitea config
+  template:
+    src: app.ini.j2
+    dest: /etc/gitea/app.ini
+    owner: root
+    group: git
+    mode: 0644

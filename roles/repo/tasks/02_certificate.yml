@@ -1,0 +1,25 @@
+---
+- name: repo - create private key and self signed cert
+  command: >
+    openssl req -x509 -nodes -subj '/CN={{ ansible_host }}' -days 365 -newkey rsa:4096 -sha256 -keyout /etc/gitea/server.key -out /etc/gitea/server.crt
+    creates=/etc/gitea/server.crt
+  register: out
+- debug: var=out.stdout_lines
+
+- name: repo - chown private key
+  ansible.builtin.file:
+    path: /etc/gitea/server.key
+    owner: git
+    group: git
+    mode: '0600'
+  register: out
+- debug: var=out.stdout_lines
+
+- name: repo - chown self signed cert
+  ansible.builtin.file:
+    path: /etc/gitea/server.crt
+    owner: git
+    group: git
+    mode: '0600'
+  register: out
+- debug: var=out.stdout_lines

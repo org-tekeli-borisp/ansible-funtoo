@@ -8,8 +8,8 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: repo - pause for 20 seconds
+- name: repo - pause for 30 seconds
   pause:
-    seconds: 20
+    seconds: 30
   register: out
 - debug: var=out.stdout_lines

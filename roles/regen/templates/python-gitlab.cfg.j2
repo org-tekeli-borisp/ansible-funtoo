@@ -1,0 +1,14 @@
+[global]
+ssl_verify = false
+timeout = 5
+default = gitlab.com
+
+[gitlab.com]
+url = https://gitlab.com/
+private_token = {{ regen_gitlab_token }}
+api_version = 4
+
+[gitlab.freedesktop.org]
+url = https://gitlab.freedesktop.org/
+private_token = {{ regen_freedesktop_token }}
+api_version = 4

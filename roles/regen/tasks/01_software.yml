@@ -29,3 +29,10 @@
   register: out
 - debug: var=out.stdout_lines
 
+- name: regen - ensure dev-vcs/python-gitlab  is installed
+  portage:
+    package: dev-vcs/python-gitlab
+    state: present
+    quiet: true
+  register: out
+- debug: var=out.stdout_lines

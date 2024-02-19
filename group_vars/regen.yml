@@ -2,3 +2,5 @@ container_name: regen-container
 regen_user: tree
 regen_github_user: regen_github_user
 regen_github_token: regen_github_token
+regen_gitlab_token:  regen_gitlab_token
+regen_freedesktop_token: regen_freedesktop_token

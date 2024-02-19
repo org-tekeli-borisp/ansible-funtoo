@@ -8,3 +8,13 @@
     mode: 0600
   register: out
 - debug: var=out.stdout_lines
+
+- name: regen - credentials for querying gitlab.org and gitlab.freedesktop.org
+  template:
+    src: python-gitlab.cfg.j2
+    dest: "/home/{{ regen_user }}/.python-gitlab.cfg"
+    owner: "{{ regen_user }}"
+    group: "{{ regen_user }}"
+    mode: 0600
+  register: out
+- debug: var=out.stdout_lines

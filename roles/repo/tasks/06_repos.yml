@@ -1,0 +1,42 @@
+---
+- name: repo - create repos
+  become: true
+  become_user: "{{ gitea_user }}"
+  become_method: su
+  become_flags: '--login'
+  command: >
+    /usr/bin/curl -k -H "content-type: application/json"  -H "Authorization: token {{ gitea_repo_user_token }}" 'https://{{ ansible_host }}/api/v1/user/repos' -d '{"name": "{{ item }}"}'
+  with_items:
+    - core-server-kit
+    - core-hw-kit
+    - core-kit
+    - python-modules-kit
+    - dev-kit
+    - lang-kit
+    - games-kit
+    - net-kit
+    - editors-kit
+    - i18n-kit
+    - media-kit
+    - meta-repo
+    - python-kit
+    - ruby-kit
+    - mate-kit
+    - xfce-kit
+    - gnome-kit
+    - kde-kit
+    - perl-kit
+    - lisp-scheme-kit
+    - ml-lang-kit
+    - haskell-kit
+    - science-kit
+    - text-kit
+    - desktop-kit
+    - browser-kit
+    - security-kit
+    - core-gl-kit
+    - java-kit
+    - qt-kit
+    - llvm-kit
+  register: out
+- debug: var=out.stdout_lines

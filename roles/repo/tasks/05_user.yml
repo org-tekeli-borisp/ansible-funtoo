@@ -16,3 +16,15 @@
     /usr/bin/gitea admin user create --username {{ gitea_repo_user }} --password {{ gitea_repo_user_password }} --email {{ gitea_repo_user_email }} --admin
   register: out
 - debug: var=out.stdout_lines
+
+- name: repo - generate gitea token
+  become: true
+  become_user: "{{ gitea_user }}"
+  become_method: su
+  become_flags: '--login'
+  command: >
+    /usr/bin/gitea admin user generate-access-token --username {{ gitea_repo_user }} --raw --scopes all
+  register: token
+- debug: var=token.stdout
+- set_fact:
+    gitea_repo_user_token={{ token.stdout }}

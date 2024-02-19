@@ -13,3 +13,6 @@
 
 - name: repo - ensure gitea repo user is created
   include_tasks: 05_user.yml
+
+- name: repo - create funtoo repos
+  include_tasks: 06_repos.yml

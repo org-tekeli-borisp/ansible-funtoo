@@ -16,3 +16,6 @@
 
 - name: repo - create funtoo repos
   include_tasks: 06_repos.yml
+
+- name: repo - import regen ssh public key
+  include_tasks: 07_key.yml

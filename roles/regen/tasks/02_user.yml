@@ -4,6 +4,9 @@
     name: "{{ regen_user }}"
     groups: portage
     append: yes
+    generate_ssh_key: yes
+    ssh_key_type: rsa
+    ssh_key_bits: 4096
   register: out
 - debug: var=out.stdout_lines
 
@@ -36,3 +39,14 @@
     value: "{{ regen_user }}@{{ container_name }}"
   register: out
 - debug: var=out.stdout_lines
+
+- name: regen - get ssh public key of {{ regen_user }}
+  become: true
+  become_user: "{{ regen_user }}"
+  become_method: su
+  become_flags: '--login'
+  shell: cat ~/.ssh/id_rsa.pub
+  register: public_key
+- debug: var=public_key.stdout
+- set_fact:
+    "regen_ssh_public_key": "{{ public_key.stdout }}"

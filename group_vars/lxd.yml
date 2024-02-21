@@ -1,1 +1,2 @@
-lxd_image_url: https://build.funtoo.org/next/x86-64bit/intel64-skylake/lxd-latest.tar.xz
+#lxd_image_url: https://build.funtoo.org/next/x86-64bit/intel64-skylake/lxd-latest.tar.xz
+lxd_image_url: https://metro.fritz.box/next/x86-64bit/intel64-skylake/2024-02-21/lxd-intel64-skylake-next-2024-02-21.tar

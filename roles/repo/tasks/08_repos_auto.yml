@@ -5,7 +5,15 @@
   become_method: su
   become_flags: '--login'
   command: >
-    /usr/bin/curl -k -H "content-type: application/json"  -H "Authorization: token {{ gitea_repo_user_token }}" 'https://{{ ansible_host }}/api/v1/user/repos' -d '{"name": "{{ item }}"}'
+    /usr/bin/curl 
+      -k
+      -X 'POST'
+      'https://{{ ansible_host }}/api/v1/org/auto/repos' 
+      -H "content-type: application/json" 
+      -H "Authorization: token {{ gitea_repo_user_token }}" 
+      -d '{
+        "name": "{{ item }}" 
+      }'
   with_items:
     - core-server-kit
     - core-hw-kit

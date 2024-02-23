@@ -1,0 +1,81 @@
+---
+- name: repo - create repos
+  become: true
+  become_user: "{{ gitea_user }}"
+  become_method: su
+  become_flags: '--login'
+  command: >
+    /usr/bin/curl 
+      -k 
+      -X 'POST'
+      'https://{{ ansible_host }}/api/v1/repos/migrate' 
+      -H "content-type: application/json"  
+      -H "Authorization: token {{ gitea_repo_user_token }}"
+      -d '{
+        "clone_addr": "{{ item.url }}",
+        "repo_name": "{{ item.repo_name }}",
+        "repo_owner": "{{ item.repo_owner }}",
+        "mirror": true,
+        "service": "git"
+      }'
+  with_items:
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/appi.git", repo_name: "appi", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/baselayout.git", repo_name: "baselayout", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/boot-update.git", repo_name: "boot-update", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/corenetwork.git", repo_name: "corenetwork", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/ego.git", repo_name: "ego", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/ffs.git", repo_name: "ffs", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/funtoo-stig.git", repo_name: "funtoo-stig", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/gnome-kit-sources.git", repo_name: "gnome-kit-sources", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/i18n-kit-sources.git", repo_name: "i18n-kit-sources", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/kde-kit-sources.git", repo_name: "kde-kit-sources", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/kit-fixups.git", repo_name: "kit-fixups", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/mate-kit-sources.git", repo_name: "mate-kit-sources", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/merge-scripts.git", repo_name: "merge-scripts", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/metro.git", repo_name: "metro", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/openrc.git", repo_name: "openrc", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/perl-kit-sources.git", repo_name: "perl-kit-sources", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/qt-kit-sources.git", repo_name: "qt-kit-sources", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/realdev.git", repo_name: "realdev", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/core/xfce-kit-sources.git", repo_name: "xfce-kit-sources", repo_owner: "mirror-core" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/co/flora.git", repo_name: "flora", repo_owner: "mirror-co" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/co/ncse-overlay.git", repo_name: "ncse-overlay", repo_owner: "mirror-co" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/co/skeleton-overlay.git", repo_name: "skeleton-overlay", repo_owner: "mirror-co" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/browser-kit.git", repo_name: "browser-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/core-gl-kit.git", repo_name: "core-gl-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/core-hw-kit.git", repo_name: "core-hw-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/core-kit.git", repo_name: "core-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/core-server-kit.git", repo_name: "core-server-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/core-ui-kit.git", repo_name: "core-ui-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/desktop-kit.git", repo_name: "desktop-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/dev-kit.git", repo_name: "dev-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/editors-kit.git", repo_name: "editors-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/games-kit.git", repo_name: "games-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/gentoo-staging.git", repo_name: "gentoo-staging", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/gnome-kit.git", repo_name: "gnome-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/haskell-kit.git", repo_name: "haskell-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/i18n-kit.git", repo_name: "i18n-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/java-kit.git", repo_name: "java-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/kde-kit.git", repo_name: "kde-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/lang-kit.git", repo_name: "lang-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/lisp-scheme-kit.git", repo_name: "lisp-scheme-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/llvm-kit.git", repo_name: "llvm-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/mate-kit.git", repo_name: "mate-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/media-kit.git", repo_name: "media-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/meta-repo.git", repo_name: "meta-repo", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/ml-lang-kit.git", repo_name: "ml-lang-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/net-kit.git", repo_name: "net-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/nokit.git", repo_name: "nokit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/perl-kit.git", repo_name: "perl-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/php-kit.git", repo_name: "php-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/python-kit.git", repo_name: "python-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/python-modules-kit.git", repo_name: "python-modules-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/qt-kit.git", repo_name: "qt-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/ruby-kit.git", repo_name: "ruby-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/science-kit.git", repo_name: "science-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/security-kit.git", repo_name: "security-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/text-kit.git", repo_name: "text-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/auto/xfce-kit.git", repo_name: "xfce-kit", repo_owner: "mirror-auto" }
+
+  register: out
+- debug: var=out.stdout_lines

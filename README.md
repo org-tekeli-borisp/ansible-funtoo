@@ -7,6 +7,7 @@ With this setup you will be able
 - to create your own locally built Funtoo Linux tar images with the power of [Funtoo Metro Project](https://www.funtoo.org/Funtoo:Metro)
 - to create your own local Funtoo Linux meta repo with the power of [Funtoo Metatools Project](https://www.funtoo.org/Funtoo:Metatools)
 - to serve your own local Funtoo Linux meta repo to your Funtoo Linux based installations with the power of [Gitea](https://about.gitea.com/)
+- to have a local mirror of [official Funtoo Linux code repos](https://code.funtoo.org/)
 
 # Requirements
 - Ansible available on your controller host 
@@ -32,7 +33,7 @@ These credentials are needed due to anonymous access rate limiting on github.com
 ```
 ansible-playbook -i production site.yml
 ```
-**Achtung!** The playbook generates a password for gitea application user and prints it out. WWatch it out as you will need it for log in the gitea application running on the lxd repo-container.    
+**Achtung!** The playbook generates a password for gitea application user and prints it out. Watch it out as you will need it for log in the gitea application running on the lxd repo-container.    
 ![gitea-password.png](.img/gitea-password.png)
 
 # How to use the result setup
@@ -155,6 +156,6 @@ Gitea runs in the third created lxd container `repo-container`. Please use the u
 
 ![gitea-repos.png](.img/gitea-repos.png)
 
-After a `successful` tree regeneration round you can use the `https://repo-containser/funtoo/{repo}` as `sync_base_url` in other Funtoo Linux installations.
+After a `successful` tree regeneration round you can use the `https://repo-containser/auto/{repo}` as `sync_base_url` in other Funtoo Linux installations.
 
-![snc-url.png](.img/sync-url.png)
+![sync-url.png](.img/sync-url.png)

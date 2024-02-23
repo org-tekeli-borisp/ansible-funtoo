@@ -14,8 +14,14 @@
 - name: repo - ensure gitea repo user is created
   include_tasks: 05_user.yml
 
-- name: repo - create funtoo repos
-  include_tasks: 06_repos.yml
-
 - name: repo - import regen ssh public key
-  include_tasks: 07_key.yml
+  include_tasks: 06_key.yml
+
+- name: repo - create funtoo orgs
+  include_tasks: 07_orgs.yml
+
+- name: repo - create funtoo autogen repos
+  include_tasks: 08_repos_auto.yml
+
+- name: repo - create funtoo mirror repos
+  include_tasks: 09_repos_mirror.yml

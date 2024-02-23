@@ -1,0 +1,23 @@
+---
+- name: repo - create organizations
+  become: true
+  become_user: "{{ gitea_user }}"
+  become_method: su
+  become_flags: '--login'
+  command: >
+    /usr/bin/curl 
+      -k
+      -X 'POST'
+      'https://{{ ansible_host }}/api/v1/orgs'
+      -H "content-type: application/json"
+      -H "Authorization: token {{ gitea_repo_user_token }}"
+      -d '{
+        "username": "{{ item }}"
+      }'
+  with_items:
+    - auto
+    - mirror-auto
+    - mirror-core
+    - mirror-co
+  register: out
+- debug: var=out.stdout_lines

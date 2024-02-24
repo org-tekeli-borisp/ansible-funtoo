@@ -76,6 +76,36 @@
     - { url: "https://code.funtoo.org/bitbucket/scm/auto/security-kit.git", repo_name: "security-kit", repo_owner: "mirror-auto" }
     - { url: "https://code.funtoo.org/bitbucket/scm/auto/text-kit.git", repo_name: "text-kit", repo_owner: "mirror-auto" }
     - { url: "https://code.funtoo.org/bitbucket/scm/auto/xfce-kit.git", repo_name: "xfce-kit", repo_owner: "mirror-auto" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/aiohttp.git", repo_name: "aiohttp", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/dapper.git", repo_name: "dapper", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/dropbox-python-setup.git", repo_name: "dropbox-python-setup", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/eudev.git", repo_name: "eudev", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/genkernel.git", repo_name: "genkernel", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/genkernel-funtoo.git", repo_name: "genkernel-funtoo", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/kernel-seeds.git", repo_name: "kernel-seeds", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/keychain.git", repo_name: "keychain", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/lxcfs.git", repo_name: "lxcfs", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/openrazer.git", repo_name: "openrazer", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/portage-classic.git", repo_name: "portage-classic", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/portage-funtoo.git", repo_name: "portage-funtoo", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/portage-gentoo.git", repo_name: "portage-gentoo", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/spl.git", repo_name: "spl", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/xkernel.git", repo_name: "xkernel", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/misc/zfs.git", repo_name: "zfs", repo_owner: "mirror-misc" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/core-gl-testkit.git", repo_name: "core-gl-testkit", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/dockerize.git", repo_name: "dockerize", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/fchroot.git", repo_name: "fchroot", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/flora-dr.git", repo_name: "flora-dr", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/funtoo-metatools.git", repo_name: "funtoo-metatools", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/funtoo-ramdisk.git", repo_name: "funtoo-ramdisk", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/funtoo-sec.git", repo_name: "funtoo-sec", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/funtoo-test-suite.git", repo_name: "funtoo-test-suite", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/kit-fixups.git", repo_name: "kit-fixups", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/metarepo-mirror.git", repo_name: "metarepo-mirror", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/python-kit-dr.git", repo_name: "python-kit-dr", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/qt-kit.git", repo_name: "qt-kit", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/steam-launcher.git", repo_name: "steam-launcher", repo_owner: "mirror-drobbins" }
+    - { url: "https://code.funtoo.org/bitbucket/scm/~drobbins/subpop.git", repo_name: "subpop", repo_owner: "mirror-drobbins" }
 
   register: out
 - debug: var=out.stdout_lines

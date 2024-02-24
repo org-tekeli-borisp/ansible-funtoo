@@ -19,5 +19,7 @@
     - mirror-auto
     - mirror-core
     - mirror-co
+    - mirror-misc
+    - mirror-drobbins
   register: out
 - debug: var=out.stdout_lines

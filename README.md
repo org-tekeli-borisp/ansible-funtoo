@@ -33,36 +33,36 @@ These credentials are needed due to anonymous access rate limiting on github.com
 ```
 ansible-playbook -i production site.yml
 ```
-**Achtung!** The playbook generates a password for gitea application user and prints it out. Watch it out as you will need it for log in the gitea application running on the lxd repo-container.    
+**Achtung!** The playbook generates a password for gitea application user and prints it out. Watch it out as you will need it for log in the gitea application running on the `repo` lxd container.    
 ![gitea-password.png](.img/gitea-password.png)
 
 # How to use the result setup
 After the execution of this ansible playbook you will have 3 running lxd container on your lxd host
 ```
-borisp@funtoo-lxd ~ $ lxc list
+borisp@funtoo-infra ~ $ lxc list
 To start your first container, try: lxc launch ubuntu:22.04
 Or for a virtual machine: lxc launch ubuntu:22.04 --vm
 
 +-----------------+---------+-----------------------+------+-----------+-----------+
 |      NAME       |  STATE  |         IPV4          | IPV6 |   TYPE    | SNAPSHOTS |
 +-----------------+---------+-----------------------+------+-----------+-----------+
-| metro-container | RUNNING | 192.168.110.10 (eth0) |      | CONTAINER | 0         |
+| metro           | RUNNING | 192.168.110.10 (eth0) |      | CONTAINER | 0         |
 +-----------------+---------+-----------------------+------+-----------+-----------+
-| regen-container | RUNNING | 192.168.110.11 (eth0) |      | CONTAINER | 0         |
+| regen           | RUNNING | 192.168.110.11 (eth0) |      | CONTAINER | 0         |
 +-----------------+---------+-----------------------+------+-----------+-----------+
-| repo-container  | RUNNING | 192.168.110.12 (eth0) |      | CONTAINER | 0         |
+| repo            | RUNNING | 192.168.110.12 (eth0) |      | CONTAINER | 0         |
 +-----------------+---------+-----------------------+------+-----------+-----------+
 ```
 # Funtoo Metro
-To create your own Funtoo Linux tar images just login into the `metro-container`
+To create your own Funtoo Linux tar images just login into the `metro` lxd container
 ```
-borisp@funtoo-lxd ~ $ lxc shell metro-container
-metro-container ~ # 
+borisp@funtoo-infra ~ $ lxc shell metro
+metro ~ # 
 ```
 
 Configure you preferred release, architecture and sub-architecture with menu based setup 
 ```
-metro-container ~ # metro/scripts/setup
+metro ~ # metro/scripts/setup
 ```
 ```
 www.funtoo.org / funtoo
@@ -119,43 +119,43 @@ Metro build for release next, x86-64bit, intel64-skylake has been initialized.
 To build a new release, use ezbuild (or set up buildbot):
 		
 scripts/ezbuild.sh next x86-64bit intel64-skylake freshen+gnome
-metro-container ~ # 
+metro ~ # 
 
 ```
 
 To start the creation of Funtoo Linux tar images just trigger the `metro/scripts/ezbuild.sh` with desired configuration. 
 ```
-metro-container ~ # metro/scripts/ezbuild.sh next x86-64bit intel64-skylake freshen+lxd+kde
+metro ~ # metro/scripts/ezbuild.sh next x86-64bit intel64-skylake freshen+lxd+kde
 ```
 More info under https://www.funtoo.org/Funtoo:Metro/Initial_Setup 
 
-On the metro-container running nginx server gives you a browser access to logs and created images. 
+Nginx webserver running inside the metro container gives you a browser access to logs and created images. 
 
 ![metro-nginx.png](.img/metro-nginx.png)
 
 # Funtoo Meta-Repo Regeneration
-To create your own local Funtoo Linux meta repo 
+To create your own local Funtoo Linux meta repo login into `regen` lxd container, 
 ```
-borisp@funtoo-lxd ~ $ lxc shell regen-container
-regen-container ~ # 
+borisp@funtoo-infra ~ $ lxc shell regen
+regen ~ # 
 ```
-Switch to the tree regeneration user
+switch to the tree regeneration user
 ```
-regen-container ~ # su --login tree
-tree@regen-container ~ $ 
+regen ~ # su --login tree
+tree@regen ~ $ 
 ```
 and trigger the tree regeneration process
 ```
-tree@regen-container ~ $ time merge-kits next --prod --create_branches --fixups_branch own-repo-gitea --fixups_url=https://code.funtoo.org/bitbucket/scm/~borisp/kit-fixups.git
+tree@regen ~ $ time merge-kits next --prod --create_branches --fixups_url=https://code.funtoo.org/bitbucket/scm/~borisp/kit-fixups-local-gen.git
 ```
-**Achtung!** Here we are using `--prod` and a forked repo of the [Funtoo official kit-fixups repo](https://code.funtoo.org/bitbucket/projects/CORE/repos/kit-fixups/) as at the moment I've found only one possibility to define the push target for merge-kits application - to overwrite the prod and mirror urls in the [releases/next/repositories.yaml](https://code.funtoo.org/bitbucket/users/borisp/repos/kit-fixups/browse/releases/next/repositories.yaml?at=refs%2Fheads%2Fown-repo-gitea#69) 
+**Achtung!** Here we are using `--prod` and a forked repo of the [Funtoo official kit-fixups repo](https://code.funtoo.org/bitbucket/projects/CORE/repos/kit-fixups/) as at the moment I've found only one possibility to define the push target for merge-kits application - to overwrite the prod and mirror urls in the [releases/next/repositories.yaml](https://code.funtoo.org/bitbucket/users/borisp/repos/kit-fixups-local-gen/browse/releases/next/repositories.yaml#68) 
 ![prod-url.png](.img/prod-url.png) See too [FL-12095](https://bugs.funtoo.org/browse/FL-12095) 
 
 # Gitea as Meta-Repo Service 
-Gitea runs in the third created lxd container `repo-container`. Please use the username `funtoo` and the password previous generated by the ansible playbook.
+Gitea runs in the third created lxd container `repo`. Please use the username `funtoo` and the password previous generated by the ansible playbook.
 
 ![gitea-repos.png](.img/gitea-repos.png)
 
-After a `successful` tree regeneration round you can use the `https://repo-containser/auto/{repo}` as `sync_base_url` in other Funtoo Linux installations.
+After a `successful` tree regeneration round you can use the `https://repo/auto/{repo}` as `sync_base_url` in other Funtoo Linux installations.
 
 ![sync-url.png](.img/sync-url.png)

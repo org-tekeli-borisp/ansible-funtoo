@@ -1,5 +1,5 @@
 ---
 - name: metro-nginx - create self signed cert
   command: >
-    openssl req -x509 -nodes -subj '/CN={{ ansible_host }}' -days 365 -newkey rsa:4096 -sha256 -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt
+    openssl req -x509 -nodes -subj '/CN={{ container_name }}' -addext 'subjectAltName=DNS:{{ container_name }},IP:{{ ansible_host }}' -days 365 -newkey rsa:4096 -sha256 -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt
     creates=/etc/ssl/certs/server.crt

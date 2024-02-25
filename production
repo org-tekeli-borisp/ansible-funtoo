@@ -1,11 +1,11 @@
 [lxd]
-funtoo-lxd
+funtoo-infra
 
 [metro]
-metro-container
+metro
 
 [regen]
-regen-container
+regen
 
 [repo]
-repo-container
+repo

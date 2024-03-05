@@ -7,6 +7,3 @@
 
 - name: regen - configure regen
   include_tasks: 03_config.yml
-
-- name: regen - patching moonbean in kit.py
-  include_tasks: 04_patch.yml

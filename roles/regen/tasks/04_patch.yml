@@ -1,7 +1,0 @@
----
-- name: regen - patching moonbean in kit.py
-  patch:
-    src: FL-11940-merge-kits-missing-moonbeam.patch
-    dest: /usr/lib/python3.9/site-packages/metatools/kit.py
-  register: out
-- debug: var=out.stdout_lines

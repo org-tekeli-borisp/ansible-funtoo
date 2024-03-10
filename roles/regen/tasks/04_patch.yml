@@ -1,0 +1,7 @@
+---
+- name: regen - patching FL-12095 in merge-kits.py
+  patch:
+    src: FL-12095.patch
+    dest: /usr/lib64/python-exec/python3.9/merge-kits
+  register: out
+- debug: var=out.stdout_lines

@@ -7,3 +7,6 @@
 
 - name: regen - configure regen
   include_tasks: 03_config.yml
+
+- name: regen - patching FL-12095 in merge-kits.py
+  include_tasks: 04_patch.yml

@@ -1,0 +1,37 @@
+Subject: [PATCH] FL-12095: overwrite release_yaml remotes with values from console input.
+---
+Index: bin/merge-kits
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/bin/merge-kits b/bin/merge-kits
+--- a/bin/merge-kits	(revision 6c73d0100208617a3533b18895577764841031b9)
++++ b/bin/merge-kits	(revision b1312eac3ef013ad6c5f8e2b5f23742815b1007b)
+@@ -53,6 +53,15 @@
+ 		debug=args.debug,
+ 		howdy=args.howdy
+ 	)
++
++	if args.remote_prod_url:
++		model.release_yaml.remotes['prod']['url'] = args.remote_prod_url
++
++	if args.remote_prod_mirrors == "none" and model.release_yaml.remotes['prod']['mirrors']:
++		del model.release_yaml.remotes['prod']['mirrors']
++	elif args.remote_prod_mirrors:
++		model.release_yaml.remotes['prod']['mirrors'] = args.remote_prod_mirrors.split(",")
++
+ 	controller = MetaRepoJobController(model, write=True)
+ 	try:
+ 		success = await controller.generate()
+@@ -71,7 +80,9 @@
+ 	"create_branches": {"action": "store_true", "default": False},
+ 	"release": {"positional": True},
+ 	"debug": {"action": "store_true", "default": False},
+-	"howdy": {"action": "store_true", "default": False}
++	"howdy": {"action": "store_true", "default": False},
++	"remote_prod_url": {"type": str, "default": None},
++	"remote_prod_mirrors": {"type": str, "default": None}
+ }
+ 
+ 

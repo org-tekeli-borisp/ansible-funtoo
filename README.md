@@ -24,8 +24,8 @@ In the file `group_vars/lxd.yml` you can configure the download url of a lxd ima
 
 In the file `group_vars/regen.yml` you have to configure
 - your username and personal application token for github.com
-- your personal application token for gitlab.com
-- your personal application token for gitlab.freedesktop.org
+- your personal application token with `read_api` scope for gitlab.com
+- your personal application token with `read_api` scope for gitlab.freedesktop.org
 
 These credentials are needed due to anonymous access rate limiting on github.com, gitlab.com and  gitlab.freedesktop.org sites
 

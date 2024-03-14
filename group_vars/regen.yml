@@ -1,4 +1,4 @@
-container_name: regen
+container_name: "{{ groups['regen'][0] }}"
 regen_user: tree
 regen_github_user: regen_github_user
 regen_github_token: regen_github_token

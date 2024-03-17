@@ -1,4 +1,11 @@
 ---
+- name: regen - patching moonbean in kit.py
+  patch:
+    src: FL-11940.patch
+    dest: /usr/lib/python3.9/site-packages/metatools/kit.py
+  register: out
+- debug: var=out.stdout_lines
+
 - name: regen - patching FL-12095 in merge-kits.py
   patch:
     src: FL-12095.patch

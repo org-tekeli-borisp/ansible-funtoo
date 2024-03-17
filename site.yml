@@ -3,3 +3,4 @@
 - import_playbook: metro.yml
 - import_playbook: regen.yml
 - import_playbook: repo.yml
+- import_playbook: certs.yml

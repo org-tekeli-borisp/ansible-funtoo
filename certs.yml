@@ -1,0 +1,60 @@
+---
+- hosts: repo
+  tasks:
+    - name: fetch repo cert
+      fetch:
+        src: /etc/gitea/server.crt
+        dest: /tmp/repo.crt
+        flat: true
+      register: out
+    - debug: var=out.stdout_lines
+
+- hosts: regen
+  tasks:
+    - name: ensure /usr/local/share/ca-certificates folder exists
+      file:
+        path: /usr/local/share/ca-certificates
+        state: directory
+        owner: root
+        group: root
+        mode: 0775
+        recurse: yes
+      register: out
+    - debug: var=out.stdout_lines
+
+    - name: copy repo cert to regen
+      copy:
+        src: /tmp/repo.crt
+        dest: /usr/local/share/ca-certificates/repo.crt
+      register: out
+    - debug: var=out.stdout_lines
+
+    - name: update certificates
+      command: update-ca-certificates
+      register: out
+    - debug: var=out.stdout_lines
+
+- hosts: metro
+  tasks:
+    - name: ensure /usr/local/share/ca-certificates folder exists
+      file:
+        path: /usr/local/share/ca-certificates
+        state: directory
+        owner: root
+        group: root
+        mode: 0775
+        recurse: yes
+      register: out
+    - debug: var=out.stdout_lines
+
+    - name: copy repo cert to regen
+      copy:
+        src: /tmp/repo.crt
+        dest: /usr/local/share/ca-certificates/repo.crt
+      register: out
+    - debug: var=out.stdout_lines
+
+    - name: update metro certs
+      command: update-ca-certificates
+      register: out
+    - debug: var=out.stdout_lines

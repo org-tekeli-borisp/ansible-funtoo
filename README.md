@@ -146,7 +146,7 @@ tree@regen ~ $
 ```
 and trigger the tree regeneration process
 ```
-tree@regen ~ $ time merge-kits next --prod --create_branches --fixups_url=https://code.funtoo.org/bitbucket/scm/core/kit-fixups.git --remote_prod_url=git@repo:auto/{repo} --remote_prod_mirrors=none
+tree@regen ~ $ time merge-kits next --prod --create_branches --fixups_url=https://repo/funtoo/kit-fixups-for-regen.git --remote_prod_url=git@repo:auto/{repo} --remote_prod_mirrors=none
 ```
 
 # Gitea as Meta-Repo Service 

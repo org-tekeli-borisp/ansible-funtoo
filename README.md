@@ -160,6 +160,6 @@ After a `successful` tree regeneration round you can use the `https://repo/auto/
 
 Additionally, you can use it as `EGO_SYNC_BASE_URL` for Funtoo Linux images generation with Metro.
 ```
-metro ~ # export EGO_SYNC_BASE_URL="https://repo:auto/{repo}"
+metro ~ # export EGO_SYNC_BASE_URL="https://repo/auto/{repo}"
 metro ~ # metro/scripts/ezbuild.sh next x86-64bit intel64-skylake freshen+lxd+kde
 ```

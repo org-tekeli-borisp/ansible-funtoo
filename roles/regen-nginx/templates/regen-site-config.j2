@@ -1,0 +1,12 @@
+server {
+    server_name {{ container_name }};
+    access_log /var/log/nginx/{{ container_name }}.access.log combined;
+    listen 443 ssl;
+    ssl_certificate /etc/ssl/certs/server.crt;
+    ssl_certificate_key /etc/ssl/private/server.key;
+
+    location / {
+        root /home/tree/repo_tmp/stores/blos/;
+        autoindex on;
+    }
+}

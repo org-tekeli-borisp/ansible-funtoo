@@ -1,0 +1,6 @@
+---
+- name: regen-nginx - ensure nginx is installed
+  portage:
+    package: www-servers/nginx
+    state: present
+    quiet: true

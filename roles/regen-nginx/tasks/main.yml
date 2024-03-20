@@ -1,0 +1,15 @@
+---
+- name: regen nginx - install needed software
+  include_tasks: 01_software.yml
+
+- name: regen nginx - create self signed certificate
+  include_tasks: 02_certificate.yml
+
+- name: regen nginx - ensure site config exists and enabled
+  include_tasks: 03_config.yml
+
+- name: regen nginx - ensure index.html exists
+  include_tasks: 04_index.yml
+
+- name: regen nginx - ensure nginx startet
+  include_tasks: 05_start.yml

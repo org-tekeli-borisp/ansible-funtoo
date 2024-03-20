@@ -1,0 +1,10 @@
+---
+- name: regen-nginx - ensure  directory
+  file:
+    path: /home/tree/repo_tmp/stores/blos
+    state: directory
+    owner: tree
+    group: tree
+    mode: 0775
+    recurse: yes
+

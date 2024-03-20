@@ -1,0 +1,14 @@
+---
+- name: regen-nginx - create nginx regen site config
+  template:
+    src: regen-site-config.j2
+    dest: /etc/nginx/sites-available/regen-site-config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: regen-nginx - enable nginx regen site config
+  file:
+    src: /etc/nginx/sites-available/regen-site-config
+    dest: /etc/nginx/sites-enabled/regen-site-config
+    state: link

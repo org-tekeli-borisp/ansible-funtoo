@@ -8,3 +8,4 @@
 - hosts: regen
   roles:
     - regen
+    - regen-nginx

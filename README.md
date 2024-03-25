@@ -10,7 +10,7 @@ With this setup you will be able
 - to have a local mirror of [official Funtoo Linux code repos](https://code.funtoo.org/)
 
 # Requirements
-- Ansible available on your controller host. Ensure that you have `ansible` installed, rather than `ansible-core`. 
+- Ansible available on your controller host. Ensure that you have `app-admin/ansible` and `app-admin/ansible-core` installed. 
 - a target host running Funtoo Linux
 - ssh access on the target host from your controller host as root
 - personal application token for github.com

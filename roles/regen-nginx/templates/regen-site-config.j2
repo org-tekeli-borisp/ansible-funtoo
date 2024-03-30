@@ -7,6 +7,7 @@ server {
 
     location / {
         root /home/tree/repo_tmp/stores/blos/;
+        try_files $uri.blob $uri =404;
         autoindex on;
     }
 }

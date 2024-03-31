@@ -36,3 +36,11 @@
     quiet: true
   register: out
 - debug: var=out.stdout_lines
+
+- name: regen - ensure dev-python/pygments  is installed
+  portage:
+    package: dev-python/pygments
+    state: present
+    quiet: true
+  register: out
+- debug: var=out.stdout_lines

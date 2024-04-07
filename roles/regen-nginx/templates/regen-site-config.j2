@@ -10,4 +10,9 @@ server {
         try_files $uri.blob $uri =404;
         autoindex on;
     }
+
+    location /logs {
+        alias /home/tree/log;
+        autoindex on;
+    }
 }

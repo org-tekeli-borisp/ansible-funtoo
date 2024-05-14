@@ -1,0 +1,11 @@
+#!/bin/sh
+
+hash -r
+set -e
+set -o pipefail
+LOGPATH=$HOME/log/
+install -d $LOGPATH
+
+time ( /usr/bin/merge-kits next --prod --create_branches --fixups_url=https://"{{ groups['repo'][0] }}"/mirror-core/kit-fixups.git --remote_prod_url=git@"{{ groups['repo'][0] }}":auto/{repo} --remote_prod_mirrors=none 2>&1 | tee "$LOGPATH/${LOGFILE:-output-$(date +%F_%T)_log.txt}" )
+
+

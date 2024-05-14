@@ -1,0 +1,6 @@
+---
+- name: regen-cron - ensure needed software installed
+  include_tasks: 01_software.yml
+
+- name: regen-cron - configure cron for regen
+  include_tasks: 02_cron.yml

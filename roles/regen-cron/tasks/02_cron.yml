@@ -1,0 +1,31 @@
+---
+- name: regen-cron - ensure regen.sh exists
+  template:
+    src: regen.sh.j2
+    dest: "/home/{{ regen_user }}/regen.sh"
+    owner: "{{ regen_user }}"
+    group: "{{ regen_user }}"
+    mode: 0755
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen-cron - ensure fcron is started and enabled
+  service:
+    name: fcron
+    state: started
+    enabled: yes
+
+- name: regen-cron - cron regen.sh
+  become: true
+  become_user: "{{ regen_user }}"
+  become_method: su
+  become_flags: '--login'
+  cron:
+    name: "cron job for tree regen"
+    minute: "42"
+    hour: "*/12"
+    job: "/home/{{ regen_user }}/regen.sh"
+  register: out
+- debug: var=out.stdout_lines
+
+

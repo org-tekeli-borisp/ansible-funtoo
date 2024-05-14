@@ -1,0 +1,15 @@
+---
+- name: regen-cron - ego sync
+  shell: |
+    /usr/bin/ego sync
+  register: out
+- debug: var=out.stdout_lines
+
+- name: regen-cron - ensure sys-process/fcron is installed
+  portage:
+    package: sys-process/fcron
+    state: present
+    quiet: true
+  register: out
+- debug: var=out.stdout_lines
+

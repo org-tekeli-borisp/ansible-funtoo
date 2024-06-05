@@ -6,8 +6,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/bin/merge-kits b/bin/merge-kits
---- a/bin/merge-kits	(revision 6c73d0100208617a3533b18895577764841031b9)
-+++ b/bin/merge-kits	(revision b1312eac3ef013ad6c5f8e2b5f23742815b1007b)
+--- a/bin/merge-kits	(revision 7a344c33dd4932ff5d39ac792b3df8a00269f1f7)
++++ b/bin/merge-kits	(date 1717616848032)
 @@ -53,6 +53,15 @@
  		debug=args.debug,
  		howdy=args.howdy
@@ -33,5 +33,3 @@ diff --git a/bin/merge-kits b/bin/merge-kits
 +	"remote_prod_url": {"type": str, "default": None},
 +	"remote_prod_mirrors": {"type": str, "default": None}
  }
- 
- 

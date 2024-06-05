@@ -9,8 +9,8 @@
 - debug: var=out.stdout_lines
 
 - name: regen - FL-12156 patch for metatools
-  copy:
-    src: FL-12156.patch
+  template:
+    src: FL-12156.patch.j2
     dest: /etc/portage/patches/sys-apps/metatools/FL-12156.patch
     owner: root
     group: root

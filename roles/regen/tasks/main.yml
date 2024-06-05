@@ -1,12 +1,12 @@
 ---
+- name: regen - patches for metatools
+  include_tasks: 01_patch.yml
+
 - name: regen - ensure needed software installed
-  include_tasks: 01_software.yml
+  include_tasks: 02_software.yml
 
 - name: regen - configure tree user
-  include_tasks: 02_user.yml
+  include_tasks: 03_user.yml
 
 - name: regen - configure regen
-  include_tasks: 03_config.yml
-
-- name: regen - patching FL-12095 in merge-kits.py
-  include_tasks: 04_patch.yml
+  include_tasks: 04_config.yml

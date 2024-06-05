@@ -1,0 +1,19 @@
+Subject: [PATCH] FL-12156: overwrite SRC_URI prefix
+---
+Index: funtoo/pkgtools/ebuild.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/funtoo/pkgtools/ebuild.py b/funtoo/pkgtools/ebuild.py
+--- a/funtoo/pkgtools/ebuild.py	(revision 3be302109c361068fee7a3c974bd62497e107ca7)
++++ b/funtoo/pkgtools/ebuild.py	(date 1716679421289)
+@@ -52,7 +52,7 @@
+ 	@property
+ 	def url(self):
+ 		sha = self.final_data["sha512"]
+-		return f"https://direct.funtoo.org/{sha[0:2]}/{sha[2:4]}/{sha[4:6]}/{sha}"
++		return f"https://regen/{sha[0:2]}/{sha[2:4]}/{sha[4:6]}/{sha}"
+
+ 	@property
+ 	def src_uri(self):

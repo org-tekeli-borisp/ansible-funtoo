@@ -1,3 +1,14 @@
+- name: regen - ensure /etc/portage/patches/sys-apps/metatools patch folder exists
+  file:
+    path: /etc/portage/patches/sys-apps/metatools
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    recurse: yes
+  register: out
+- debug: var=out.stdout_lines
+
 - name: regen - FL-12095 patch for metatools
   copy:
     src: FL-12095.patch

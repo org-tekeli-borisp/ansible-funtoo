@@ -1,14 +1,8 @@
-Subject: [PATCH] FL-12095: overwrite release_yaml remotes with values from console input.
----
-Index: bin/merge-kits
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
 diff --git a/bin/merge-kits b/bin/merge-kits
---- a/bin/merge-kits	(revision 7a344c33dd4932ff5d39ac792b3df8a00269f1f7)
-+++ b/bin/merge-kits	(date 1717616848032)
-@@ -53,6 +53,15 @@
+index fa2526d..14fca38 100755
+--- a/bin/merge-kits
++++ b/bin/merge-kits
+@@ -53,6 +53,15 @@ async def main_thread(args):
  		debug=args.debug,
  		howdy=args.howdy
  	)
@@ -24,7 +18,7 @@ diff --git a/bin/merge-kits b/bin/merge-kits
  	controller = MetaRepoJobController(model, write=True)
  	try:
  		success = await controller.generate()
-@@ -71,7 +80,9 @@
+@@ -71,7 +80,9 @@ CLI_CONFIG = {
  	"create_branches": {"action": "store_true", "default": False},
  	"release": {"positional": True},
  	"debug": {"action": "store_true", "default": False},

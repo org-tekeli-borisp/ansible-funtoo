@@ -1,3 +1,6 @@
+# Achtung! Achtung! Achtung!
+As Funtoo Linux Project is going to die, this ansble playbook will stop to work with the final shutdown of Funtoo infrastructure.
+
 # Achtung! 
 Use at your own risk!
 

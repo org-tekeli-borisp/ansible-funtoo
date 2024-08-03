@@ -5,8 +5,8 @@
 - name: regen - ensure needed software installed
   include_tasks: 02_software.yml
 
-- name: regen - configure github, gitlab and gitlab.freedesktop.org tokens
-  include_tasks: 03_config.yml
-
 - name: regen - configure regen user
-  include_tasks: 04_user.yml
+  include_tasks: 03_user.yml
+
+- name: regen - configure github, gitlab and gitlab.freedesktop.org tokens
+  include_tasks: 04_config.yml

@@ -15,36 +15,36 @@
         "name": "{{ item }}" 
       }'
   with_items:
-    - core-server-kit
+    - browser-kit
+    - core-gl-kit
     - core-hw-kit
     - core-kit
-    - python-modules-kit
+    - core-server-kit
     - dev-kit
-    - lang-kit
-    - games-kit
-    - net-kit
+    - desktop-kit
     - editors-kit
+    - games-kit
+    - gnome-kit
+    - haskell-kit
     - i18n-kit
+    - java-kit
+    - kde-kit
+    - lang-kit
+    - llvm-kit
+    - lisp-scheme-kit
+    - mate-kit
     - media-kit
     - meta-repo
-    - python-kit
-    - ruby-kit
-    - mate-kit
-    - xfce-kit
-    - gnome-kit
-    - kde-kit
-    - perl-kit
-    - lisp-scheme-kit
     - ml-lang-kit
-    - haskell-kit
-    - science-kit
-    - text-kit
-    - desktop-kit
-    - browser-kit
-    - security-kit
-    - core-gl-kit
-    - java-kit
+    - net-kit
+    - perl-kit
+    - python-kit
+    - python-modules-kit
     - qt-kit
-    - llvm-kit
+    - ruby-kit
+    - science-kit
+    - security-kit
+    - text-kit
+    - xfce-kit
   register: out
 - debug: var=out.stdout_lines

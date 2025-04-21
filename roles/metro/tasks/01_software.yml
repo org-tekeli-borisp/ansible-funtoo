@@ -1,4 +1,21 @@
 ---
+- name: metro - ensure sync_base_url is in /etc/ego.conf
+  ansible.builtin.lineinfile:
+    path: /etc/ego.conf
+    line: 'sync_base_url=https://github.com/funtoo-repo/{repo}'
+    create: yes
+  register: out
+- debug: var=out.stdout_lines
+
+- name: metro - ensure GENTOO_MIRRORS is in /etc/portage/make.conf
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    line: 'GENTOO_MIRRORS=https://direct-github.funmore.org'
+    create: yes
+    state: present
+  register: out
+- debug: var=out.stdout_lines
+
 - name: metro - ego sync
   shell: |
     /usr/bin/ego sync

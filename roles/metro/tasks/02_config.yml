@@ -1,7 +1,7 @@
 ---
 - name: metro - git repo
   shell: |
-    /usr/bin/git clone https://code.funtoo.org/bitbucket/scm/core/metro.git /root/metro
+    /usr/bin/git clone https://github.com/funtoo-src/metro.git /root/metro
   register: out
 - debug: var=out.stdout_lines
 

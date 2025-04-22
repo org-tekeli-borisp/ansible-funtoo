@@ -9,16 +9,6 @@
   register: out
 - debug: var=out.stdout_lines
 
-- name: regen - FL-12095 patch for metatools
-  copy:
-    src: FL-12095.patch
-    dest: /etc/portage/patches/sys-apps/metatools/FL-12095.patch
-    owner: root
-    group: root
-    mode: 0644
-  register: out
-- debug: var=out.stdout_lines
-
 - name: regen - FL-12156 patch for metatools
   template:
     src: FL-12156.patch.j2

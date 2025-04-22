@@ -1,5 +1,5 @@
 # Achtung! Achtung! Achtung!
-As Funtoo Linux Project is going to die, this ansble playbook will stop to work with the final shutdown of Funtoo infrastructure.
+As Funtoo Linux Project is going to die and the official Funtoo Linux source repos has been taken offline this ansible playbook is using mirrored repos hosted on Github now.
 
 # Achtung! 
 Use at your own risk!
@@ -155,7 +155,7 @@ or
 ```
 tree@regen ~ $ ./regen.sh
 ```
-**Achtung!** Here we are using the local mirror of https://code.funtoo.org/bitbucket/scm/core/kit-fixups.git with the default gitea mirrors updating intervall of 8 hours. 
+**Achtung!** Here we are using the local mirror of https://github.com/funtoo-src/kit-fixups.git with the default gitea mirrors updating intervall of 8 hours. 
 
 Additionally, the playbook creates a cron job for tree regeneration. The cron job settings can be adapted by
 ```

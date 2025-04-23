@@ -17,6 +17,12 @@
   register: out
 - debug: var=out.stdout_lines
 
+- name: lxd - ego sync
+  shell: |
+    /usr/bin/ego sync
+  register: out
+- debug: var=out.stdout_lines
+
 - name: lxd - ensure app-emulation/lxd is installed
   portage:
     package: app-emulation/lxd

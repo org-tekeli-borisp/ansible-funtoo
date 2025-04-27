@@ -1,1 +1,1 @@
-lxd_image_url: https://build.funtoo.org/next/x86-64bit/intel64-skylake/lxd-latest.tar.xz
+lxd_image_url: https://github.com/funtoo-stages/generic_64/releases/download/2025-04-23/lxd-generic_64-next-2025-04-23.tar.xz
